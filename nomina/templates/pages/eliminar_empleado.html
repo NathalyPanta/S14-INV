@@ -1,0 +1,29 @@
+{% extends "inicio.html" %}
+{% block titulo %}
+  Eliminar Empleado
+{% endblock %}
+{% load static %}
+{% block css %} 
+   <link rel="stylesheet" href="{% static 'css/form.css' %}" />
+{% endblock %}
+{% block contenido %}
+  <section class="form-container">
+    <div class="form-header" >
+      <h1>Eliminacion de Empleados</h1>
+    </div>
+    <form method="POST" id="form-empleado" class="form">
+      {% csrf_token %}
+      <h2>¿Desea Eliminar a este Empleado => 
+            <span style="color:blue;">{{empleado.id}} - {{empleado.nombre}}</span>?
+      </h2>
+      <button style="background:#0E6251;border-radius:5px;padding:5px;color:white;cursor:pointer;"
+            type="submit">Eliminar
+      </button>
+      <a style="display:block;background:#258d78;border-radius:5px;padding:5px;color:white;cursor:pointer;text-align:center;"
+        href="{% url 'empleado' %}">Cancelar</a>
+    </form>
+       
+  </section>
+{% endblock %}
+   
+

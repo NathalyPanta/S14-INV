@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <!-- Informacion de la pagina para los navegadores -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="shortcut icon" href="https://mystickermania.com/cdn/stickers/noob-pack/sticker_2158-512x512.png" type="image/x-icon">
+    {% block css %} {% endblock %}
+    <title> {% block titulo %} Página de Inicio {% endblock %}  </title>
+    
+  </head>
+  <!-- contenido de la pagina que ven lo usuarios -->
+  <body>
+    <!--* encabezado(logo-menu-titulo) del sitio -->
+    <header class="header">
+      <nav class="navegacion">
+        <a href="{% url 'inicio' %}" class="logo">
+          <img src="{% static 'img/top2.png' %}" width="50px" alt="logo">
+          <div class="logo">
+               ROL DE PAGOS
+           </div>
+        </a>
+        <ul class="menu">
+          <li><a href="{% url 'cargo' %}">Cargos</a></li>
+          <li><a href="{% url 'departamento' %}">Departamentos</a></li>
+          <li><a href="{% url 'empleado' %}">Empleados</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      {% block contenido %}
+        <!-- <section class ="principal">
+            <h1>BIENVENIDO A MI SITIO WEB</h1> -->
+            <!-- <img width="500px" src="{% static 'img/mockup.png' %}" alt="Sin imagen" />
+       </section> -->
+      {% endblock %}
+    </main>
+  </body>
+</html>

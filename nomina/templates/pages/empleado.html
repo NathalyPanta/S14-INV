@@ -1,0 +1,62 @@
+{% extends "inicio.html" %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}" />
+{% endblock %}
+{% block titulo %} Empleados {% endblock %}
+
+{% block contenido %}
+<section class="form-container">
+  <div class="form-header">
+
+    <h1>Formulario de Empleados</h1>
+
+  </div>
+
+  <form method= "POST" id="form-departamento" class="form">
+    {% csrf_token %}
+    {{empleadoForm.as_p}}
+    <button 
+    id="enviar" 
+    type="submit" 
+    name="enviar">
+      {{accion}}
+    </button>
+  </form>
+  <div class="consulta none table-responsive" id="consulta-est">
+    <h2>Listado de Empleados</h2>
+    <table class="consulta-est" id="consulta-est" border="1">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Cédula</th>
+          <th>Cargo</th>
+          <th>Departamento</th>
+          <th>Sueldo</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody class="detalle-est" id="detalle-est">
+        {%for empleado in empleados %}
+        <tr>
+          <td>{{empleado.id}}</td>
+          <td>{{empleado.nombre}}</td>
+          <td>{{empleado.cedula}}</td>
+          <td>{{empleado.cargo}}</td>
+          <td>{{empleado.departamento}}</td>
+          <td>{{empleado.sueldo}}</td>
+          <td>{{empleado.estado}}</td>
+          <td class="acciones">
+            <a href="{% url 'editar_empleado' empleado.id%}">✏️</a>
+            <a href="{% url 'eliminar_empleado' empleado.id%}">❌</a>
+          </td>
+        </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}
